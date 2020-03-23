@@ -5,6 +5,7 @@ import 'package:fluttertripapp/Place/ui/screens/platzi_trips.dart';
 import 'package:fluttertripapp/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'platzi_trips_cupertino.dart';
+import 'package:fluttertripapp/User/ui/screens/sign_in_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       bloc: BlocUser(),
-      child: MaterialApp(title: 'Flutter Demo', home: PlatziTrips()
+      child: MaterialApp(title: 'Flutter Demo',
+//          home: PlatziTrips()
+      home: SignInScreen(),
 //      home: PlatziTripsCupertino(),
           ),
     );
@@ -35,11 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
