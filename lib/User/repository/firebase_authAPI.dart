@@ -10,10 +10,16 @@ class FirebaseAuthAPI {
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
 
-    FirebaseUser user = (await _auth.signInWithCredential(
+    AuthResult authResult = await _auth.signInWithCredential(
         GoogleAuthProvider.getCredential(
-            idToken: gSA.idToken, accessToken: gSA.accessToken))) as FirebaseUser;
+            idToken: gSA.idToken, accessToken: gSA.accessToken));
 
-    return user;
+    return authResult.user;
+  }
+
+  signOut() async {
+    await _auth.signOut().then((onValue) => print("Sesión cerrada"));
+    googleSignIn.signOut();
+    print("Sesiones cerradas");
   }
 }
