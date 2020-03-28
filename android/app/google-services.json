@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "262072491215",
-    "firebase_url": "https://tripsflutter-8f92d.firebaseio.com",
-    "project_id": "tripsflutter-8f92d",
-    "storage_bucket": "tripsflutter-8f92d.appspot.com"
+    "project_number": "899633178794",
+    "firebase_url": "https://tripsflutter-4f6d0.firebaseio.com",
+    "project_id": "tripsflutter-4f6d0",
+    "storage_bucket": "tripsflutter-4f6d0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:262072491215:android:ce145fab0ec9b2717dabba",
+        "mobilesdk_app_id": "1:899633178794:android:7dbcc0a686e3c60d0ac8d3",
         "android_client_info": {
-          "package_name": "com.example.fluttertripapp"
+          "package_name": "com.mdsdeveloper.fluttertripapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "262072491215-bo27phomtbfm8l9hhfpashv1hn0s05h7.apps.googleusercontent.com",
+          "client_id": "899633178794-drbcin0b2u5ojc77jveshfle0enh7gb6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.fluttertripapp",
+            "package_name": "com.mdsdeveloper.fluttertripapp",
             "certificate_hash": "90eea7a67f561933063b0a98b21d0bd8a129f9da"
           }
         },
         {
-          "client_id": "262072491215-hfcfcs947iap8afk9n0jatvfqan2sjtl.apps.googleusercontent.com",
+          "client_id": "899633178794-r36er4de3fgns1u7ol34v7cqrb8r5in4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBH-qwd_PCHnwTJCHGfFW2GLX9KNdwSeIk"
+          "current_key": "AIzaSyCFvzSDGSf_o28UrhJJAQysp2ekw9zTG50"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "262072491215-hfcfcs947iap8afk9n0jatvfqan2sjtl.apps.googleusercontent.com",
+              "client_id": "899633178794-r36er4de3fgns1u7ol34v7cqrb8r5in4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
