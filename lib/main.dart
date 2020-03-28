@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       bloc: BlocUser(),
       child: MaterialApp(title: 'Flutter Demo',
-//          home: PlatziTrips()
-      home: SignInScreen(),
+          home: PlatziTrips()
+//      home: SignInScreen(),
 //      home: PlatziTripsCupertino(),
           ),
     );
