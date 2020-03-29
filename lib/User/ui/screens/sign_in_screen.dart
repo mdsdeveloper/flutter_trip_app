@@ -54,6 +54,7 @@ class _SignInScreen extends State<SignInScreen> {
                     fontWeight: FontWeight.bold),
               ),
             ButtonGreenSignIn(text: "Login with email", onPressed: (){
+              blocUser.signOuth();
               blocUser.signIn().then((FirebaseUser user) => print("El usuario es ${user.displayName}"));
             }, width: 300.0, height: 50.0,)],
           )
