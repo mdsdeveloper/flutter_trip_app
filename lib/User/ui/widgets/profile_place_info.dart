@@ -12,7 +12,7 @@ class ProfilePlaceInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
-    final place = Text(
+    final placeName = Text(
       this.place.name,
       style: TextStyle(
           fontFamily: 'Lato',
@@ -29,7 +29,7 @@ class ProfilePlaceInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                this.place.where,
+                this.place.name,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -38,7 +38,7 @@ class ProfilePlaceInfo extends StatelessWidget {
                 ),
               ),
               Text(
-                this.place.type,
+                this.place.description,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -51,7 +51,7 @@ class ProfilePlaceInfo extends StatelessWidget {
     );
 
     final steps = Text(
-      'Steps ${this.place.steps}',
+      'Steps ${this.place.likes}',
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,
@@ -78,7 +78,7 @@ class ProfilePlaceInfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              place,
+              placeName,
               placeInfo,
               steps
             ],
