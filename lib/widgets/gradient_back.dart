@@ -5,7 +5,7 @@ class GradientBack extends StatelessWidget {
   String title = "Popular";
   double height = 0.0;
 
-  GradientBack({Key key, this.height}); // height null full screen
+  GradientBack({Key key, this.height, this.title}); // height null full screen
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +36,14 @@ class GradientBack extends StatelessWidget {
               borderRadius: BorderRadius.circular(screenHeight / 2)),
         ),
       ),
-      /*Text(
-        title,
-        style: TextStyle(
+    );
+/*    child: Text(
+      title,
+      style: TextStyle(
           color: Colors.white,
           fontSize: 30.0,
           fontFamily: "Lato",
-          fontWeight: FontWeight.bold
-        ),
-      ),*/
-
-//      alignment: Alignment(-0.9, -0.6),
-    );
+          fontWeight: FontWeight.bold),
+    ),*/
   }
 }
