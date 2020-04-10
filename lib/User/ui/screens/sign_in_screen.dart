@@ -66,7 +66,7 @@ class _SignInScreen extends State<SignInScreen> {
               ButtonGreenSignIn(
                 text: "Login with email",
                 onPressed: () {
-                  blocUser.signOuth();
+                  blocUser.signOut();
                   blocUser.signIn().then((FirebaseUser user) => {
                         blocUser.updateUserData(User(
                             uid: user.uid,

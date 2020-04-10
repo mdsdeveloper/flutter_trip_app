@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertripapp/Place/model/place.dart';
-import 'package:fluttertripapp/Place/ui/widgets/card_image.dart';
+import 'package:fluttertripapp/Place/ui/widgets/card_image_with_fab_icon.dart';
 import 'package:fluttertripapp/Place/ui/widgets/title_input_location.dart';
 import 'package:fluttertripapp/User/bloc/bloc_user.dart';
 import 'package:fluttertripapp/widgets/button_purple.dart';
@@ -12,7 +14,7 @@ import 'package:fluttertripapp/widgets/title_header.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
-  File image;
+  final File image;
 
   AddPlaceScreen({Key key, this.image});
 
@@ -64,11 +66,13 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: "assets/img/beach_palm.jpeg",//widget.image.path,
+                    pathImage: widget.image.path,
+                    // "assets/img/beach_palm.jpeg",
                     iconData: Icons.camera_alt,
                     width: 350.0,
                     height: 250.0,
                     left: 0.0,
+                    internet: false,
                   ),
                 ), // Foto
                 Container(
@@ -96,18 +100,39 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   width: 70.0,
                   child: ButtonPurple(
                     buttonText: "Add place",
-                    onPressed: (){
-                      //1 firebase storage
-                      // url imagen
-                      //2 cloud firestore api
-                      // place-title, description, userowner, likes
-                      blocUser.updatePlaceData(Place(
-                        name: _controllerTitlePlace.text,
-                        description: _controllerTitleDescriptonPlace.text,
-                        likes: 0
-                      )).whenComplete((){
-                        print("TERMINO");
-                        Navigator.pop(context);
+                    onPressed: () {
+                      // ID del usuario logeado actualmente
+                      blocUser.currentUser.then((FirebaseUser user) {
+                        if (user != null) {
+                          String uid = user.uid;
+                          String path = "$uid/${DateTime.now().toString()}.jpg";
+                          //1 firebase storage
+                          // url imagen
+                          blocUser
+                              .uploadFile(path, widget.image)
+                              .then((StorageUploadTask storageUploadTask) {
+                            storageUploadTask.onComplete
+                                .then((StorageTaskSnapshot snapshot) {
+                              snapshot.ref.getDownloadURL().then((urlImage) {
+                                print("URLIMAGE: ${urlImage}");
+                                //2 cloud firestore api
+                                // place-title, description, userowner, likes
+                                blocUser
+                                    .updatePlaceData(Place(
+                                        name: _controllerTitlePlace.text,
+                                        description:
+                                            _controllerTitleDescriptonPlace.text,
+                                        urlImage: urlImage,
+                                        likes: 0,
+                                        liked: false))
+                                    .whenComplete(() {
+                                  print("TERMINO");
+                                  Navigator.pop(context);
+                                });
+                              });
+                            });
+                          });
+                        }
                       });
                     },
                   ),

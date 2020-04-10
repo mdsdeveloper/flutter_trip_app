@@ -1,61 +1,51 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertripapp/Place/ui/widgets/card_image_list.dart';
 import 'package:fluttertripapp/User/bloc/bloc_user.dart';
 import 'package:fluttertripapp/User/model/user.dart';
-import 'package:fluttertripapp/User/ui/screens/profile_header.dart';
+import 'package:fluttertripapp/widgets/gradient_back.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import '../widgets/profile_places_list.dart';
-import '../widgets/profile_background.dart';
 
-class ProfileTrips extends StatelessWidget {
-  BlocUser blocUser;
-
+class HeaderAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    BlocUser blocUser;
     blocUser = BlocProvider.of<BlocUser>(context);
 
     return StreamBuilder(
       stream: blocUser.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         switch (snapshot.connectionState) {
-          case ConnectionState.none:
           case ConnectionState.waiting:
-            return CircularProgressIndicator();
+          case ConnectionState.none:
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           case ConnectionState.active:
           case ConnectionState.done:
           default:
-            return showProfileData(snapshot);
+            return showPlacesData(snapshot);
         }
       },
     );
   }
 
-  Widget showProfileData(AsyncSnapshot snapshot) {
+  Widget showPlacesData(AsyncSnapshot snapshot) {
     if (!snapshot.hasData || snapshot.hasError) {
-      print("No logeado");
       return Stack(
         children: <Widget>[
-          ProfileBackground(),
-          ListView(
-            children: <Widget>[Text("Usuario no logeado. Haz login")],
-          ),
+          GradientBack(height: 250.0),
+          Text("Usuario no logeado. Haz Login")
         ],
       );
     } else {
-      print("Logeado");
-      var user = User(
+      User user = User(
           uid: snapshot.data.uid,
           name: snapshot.data.displayName,
           email: snapshot.data.email,
           photoUrl: snapshot.data.photoUrl);
 
       return Stack(
-        children: <Widget>[
-          ProfileBackground(),
-          ListView(
-            children: <Widget>[ProfileHeader(user), ProfilePlacesList(user)],
-          ),
-        ],
+        children: <Widget>[GradientBack(height: 250.0), CardImageList(user)],
       );
     }
   }
